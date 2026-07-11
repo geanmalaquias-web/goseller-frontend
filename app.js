@@ -177,7 +177,7 @@ function fmtCurrency(value) {
 }
 
 async function api(path, options = {}) {
-  const res = await fetch(path, {
+  const res = await fetch('https://goseller.devgogroup.com/api' + path, {
     ...options,
     headers: { "Content-Type": "application/json", ...(options.headers || {}) },
   });
@@ -381,7 +381,7 @@ async function showOrderDetail(order, allowStatusChange) {
     : `<p class="empty-state">Sem histórico ainda.</p>`;
 
   const docHtml = order.document_name
-    ? `<a class="ticket-doc" href="/api/orders/${order.id}/document" target="_blank" rel="noopener">📎 ${escapeHtml(order.document_name)}</a>`
+    ? `<a class="ticket-doc" href="https://goseller.devgogroup.com/api/orders/${order.id}/document" target="_blank" rel="noopener">📎 ${escapeHtml(order.document_name)}</a>`
     : `<span class="ticket-doc ticket-doc--empty">sem documento anexado</span>`;
 
   const rows = [
@@ -774,7 +774,7 @@ function renderOrders() {
           <div class="ticket-value">${fmtCurrency(o.order_value)}</div>
           ${
             o.document_name
-              ? `<a class="ticket-doc" href="/api/orders/${o.id}/document" target="_blank" rel="noopener">📎 ${escapeHtml(o.document_name)}</a>`
+              ? `<a class="ticket-doc" href="https://goseller.devgogroup.com/api/orders/${o.id}/document" target="_blank" rel="noopener">📎 ${escapeHtml(o.document_name)}</a>`
               : `<span class="ticket-doc ticket-doc--empty">sem documento anexado</span>`
           }
         </div>
@@ -839,7 +839,7 @@ function renderMyOrders() {
           <div class="ticket-value">${fmtCurrency(o.order_value)}</div>
           ${
             o.document_name
-              ? `<a class="ticket-doc" href="/api/orders/${o.id}/document" target="_blank" rel="noopener">📎 ${escapeHtml(o.document_name)}</a>`
+              ? `<a class="ticket-doc" href="https://goseller.devgogroup.com/api/orders/${o.id}/document" target="_blank" rel="noopener">📎 ${escapeHtml(o.document_name)}</a>`
               : `<span class="ticket-doc ticket-doc--empty">sem documento anexado</span>`
           }
         </div>
@@ -2121,12 +2121,4 @@ async function boot() {
   await loadMe(me);
   await loadProducts();
   loadCompanies().then(loadOrders);
-  loadMyOrders();
-  renderCatalogAll();
-  renderCart();
-  startLivePolling();
-}
-
-// ---------- Init ----------
-checkGoogleLoginError();
-boot();
+  loadMyOrd
