@@ -2006,7 +2006,7 @@ function showApp() {
 }
 
 // ---------- Login com Google (redirecionamento OAuth) ----------
-// Se a volta do Google trouxe um erro na URL (?google_error=...), mostra na tela de
+// Se a volta do Google trouxer um erro na URL (?google_error=...), mostra na tela de
 // login e limpa a URL pra não repetir a mensagem se a pessoa atualizar a página.
 function checkGoogleLoginError() {
   const params = new URLSearchParams(location.search);
@@ -2121,4 +2121,6 @@ async function boot() {
   await loadMe(me);
   await loadProducts();
   loadCompanies().then(loadOrders);
-  loadMyOrd
+  loadMyOrders();
+  startLivePolling();
+}
